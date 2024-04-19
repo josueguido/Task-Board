@@ -1,19 +1,16 @@
-import PropTypes from "prop-types"
+// Componente donde se muestra la información guardada en localStorage
+import React from 'react';
+import { useLocalStorage } from './Contexto';
 
-function DetallesGuardados({ formData }) {
-    return (
-        <div>
-            <h2>Información Guardada</h2>
-            <p>Nombre de la tarea: {formData.taskName}</p>
-            <p>Descripción: {formData.description}</p>
-            <p>Icono seleccionado: {formData.icon}</p>
-            <p>Estado: {formData.status}</p>
-        </div>
-    );
-}
+const DisplayDataComponent = () => {
+  const { localStorageData } = useLocalStorage();
 
-DetallesGuardados.propTypes = {
-    formData: PropTypes.object.isRequired
+  return (
+    <div>
+      <h2>Información Guardada</h2>
+      <p>{JSON.stringify(localStorageData)}</p>
+    </div>
+  );
 };
 
-export default DetallesGuardados;
+export default DisplayDataComponent;

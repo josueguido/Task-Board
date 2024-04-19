@@ -13,7 +13,6 @@ function App() {
           <Route path="/" element={<Layout />} />
           <Route path="/Detalles" element={<Detalles />} />
           <Route path="/DetallesGuardados" element={<DetallesGuardados />} />
-
         </Routes>
       </Router>
     </>
