@@ -4,8 +4,9 @@ import DetallesGuardados from "./DetallesGuardados";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "./Contexto";
 
-function Detalles() {
+function Detalles({ isEditing }) {
     const { localStorageData, updateLocalStorageData } = useLocalStorage();
+    const history = useHistory();
     const [form, setForm] = useState({
         taskName: '',
         description: '',
@@ -14,9 +15,10 @@ function Detalles() {
     });
 
     useEffect(() => {
-        const storedData = localStorageData || {};
-        setForm(storedData);
-    }, []);
+        if (localStorageData && localStorageData.selectedNote) {
+            setForm(localStorageData.selectedNote);
+        }
+    }, [localStorageData]);
 
     const handleChange = (event, field) => {
         const value = event.target.value;
@@ -25,6 +27,24 @@ function Detalles() {
             [field]: value
         }));
     };
+
+
+
+    const handleSaveData = () => {
+        if (isEditing) {
+            updateLocalStorageData(form); // Actualizar datos de la nota existente
+            alert('Información actualizada.');
+        } else {
+            updateLocalStorageData(form); // Guardar nueva nota
+            alert('Nueva nota creada.');
+        }
+    };
+
+    useEffect(() => {
+        const storedData = localStorageData || {};
+        setForm(storedData);
+    }, []);
+
 
     const handleDelete = () => {
         updateLocalStorageData({}); // Eliminar todos los datos guardados
@@ -37,10 +57,7 @@ function Detalles() {
         alert('Información borrada.');
     };
 
-    const handleSaveData = () => {
-        updateLocalStorageData(form); // Guardar los datos del formulario
-        alert('Información guardada.');
-    };
+    
 
     const iconos = ["👨🏻‍💻", "💬", "🏋️‍♂️", "☕", "📚", "⏰"];
     const [selectedIcon, setSelectedIcon] = useState('');
