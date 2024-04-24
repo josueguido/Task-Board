@@ -1,12 +1,15 @@
 import X from "../assets/Iconos/close_ring_duotone.svg";
 import { useState, useEffect } from "react";
-import DetallesGuardados from "./DetallesGuardados";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./Contexto";
+import { v4 as uuidv4 } from 'uuid';
 
-function Detalles({ isEditing }) {
+
+function Detalles() {
     const { localStorageData, updateLocalStorageData } = useLocalStorage();
-    const history = useHistory();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [isEditing, setIsEditing] = useState(false);
     const [form, setForm] = useState({
         taskName: '',
         description: '',
@@ -15,8 +18,15 @@ function Detalles({ isEditing }) {
     });
 
     useEffect(() => {
-        if (localStorageData && localStorageData.selectedNote) {
-            setForm(localStorageData.selectedNote);
+        if (location.state && location.state.selectedNote) {
+            setForm(location.state.selectedNote);
+            setIsEditing(true);
+        }
+    }, [location.state]);
+
+    useEffect(() => {
+        if (localStorageData) {
+            setForm(localStorageData);
         }
     }, [localStorageData]);
 
@@ -28,36 +38,21 @@ function Detalles({ isEditing }) {
         }));
     };
 
-
-
     const handleSaveData = () => {
-        if (isEditing) {
-            updateLocalStorageData(form); // Actualizar datos de la nota existente
-            alert('Información actualizada.');
-        } else {
-            updateLocalStorageData(form); // Guardar nueva nota
-            alert('Nueva nota creada.');
-        }
+        const id = uuidv4(); // Generar ID único
+        const newNote = { ...form, id }; // Agregar el ID a la nota
+        updateLocalStorageData(newNote); // Guardar la nueva nota
+        alert('Nueva nota creada.');
+        navigate("/");
     };
 
-    useEffect(() => {
-        const storedData = localStorageData || {};
-        setForm(storedData);
-    }, []);
-
-
-    const handleDelete = () => {
-        updateLocalStorageData({}); // Eliminar todos los datos guardados
-        setForm({
-            taskName: '',
-            description: '',
-            status: '',
-            icon: ''
-        });
+    const handleDelete = (id) => {
+        const updatedData = { ...localStorageData };
+        delete updatedData[id]; // Eliminar la nota con el ID proporcionado
+        setLocalStorageData(updatedData);
         alert('Información borrada.');
+        navigate("/");
     };
-
-    
 
     const iconos = ["👨🏻‍💻", "💬", "🏋️‍♂️", "☕", "📚", "⏰"];
     const [selectedIcon, setSelectedIcon] = useState('');
@@ -127,7 +122,7 @@ function Detalles({ isEditing }) {
                         <div>
                             {iconos.map((icono, index) => (
                                 <span
-                                    key={index}
+                                    key={index} // Utiliza el índice como clave
                                     style={{ fontSize: '24px', cursor: 'pointer' }}
                                     className={`w-10 h-10 bg-gray-300 inline-flex items-center justify-center rounded-lg mx-2 hover:bg-yellow-500 ${selectedIcon === icono ? 'hover:bg-yellow-500' : ''}`}
                                     onClick={() => {

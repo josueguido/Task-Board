@@ -10,11 +10,12 @@ export const LocalStorageProvider = ({ children }) => {
 
   const updateLocalStorageData = (newData) => {
     setLocalStorageData(prevData => {
-      const updatedData = [...prevData, newData];
-      localStorage.setItem('formData', JSON.stringify(updatedData));
-      return updatedData;
+        const updatedData = { ...prevData, [newData.id]: newData }; // Estructurar la nota con su ID
+        localStorage.setItem('formData', JSON.stringify(updatedData));
+        return updatedData;
     });
-  };
+};
+  
 
   return (
     <LocalStorageContext.Provider value={{ localStorageData, updateLocalStorageData }}>
