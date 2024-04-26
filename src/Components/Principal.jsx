@@ -1,17 +1,13 @@
 import Add from "../assets/Iconos/Add_round_duotone.svg";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from './Contexto';
+import { ModalComponent } from "./ui/Modal";
 
 const Principal = () => {
+
     const { localStorageData, deleteAllLocalStorageData } = useLocalStorage();
 
-    const handleDeleteAll = () => {
-        const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar todas las notas?");
-        if (isConfirmed) {
-            deleteAllLocalStorageData(); // Llamar a la función para eliminar todas las notas
-        }
-    };
-
+  
     return (
         <>
             <article className="flex flex-col items-center justify-center py-4 gap-10">
@@ -48,7 +44,7 @@ const Principal = () => {
                 </div>
 
                 <div className="flex flex-row py-10 gap-4">
-                    <button onClick={handleDeleteAll} className="w-28 h-10 rounded-xl bg-red-500 text-white">Delete All</button>
+                    <ModalComponent/>
                 </div>
             </article>
         </>

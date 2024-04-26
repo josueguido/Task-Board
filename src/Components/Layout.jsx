@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Header from "./Header";
 import Principal from "./Principal";
 
@@ -6,6 +7,7 @@ function Layout() {
         <>
         <Header/>
         <Principal/>
+        <Footer/>
         </>
      );
 }

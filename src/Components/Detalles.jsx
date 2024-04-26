@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./Contexto";
 import { v4 as uuidv4 } from 'uuid';
+import { NotificationComponent } from "./ui/Notificacion";
 
 
 function Detalles() {
+
     const { localStorageData, updateLocalStorageData } = useLocalStorage();
     const location = useLocation();
     const navigate = useNavigate();
@@ -42,19 +44,18 @@ function Detalles() {
         const id = uuidv4(); // Generar ID único
         const newNote = { ...form, id }; // Agregar el ID a la nota
         updateLocalStorageData(newNote); // Guardar la nueva nota
-        alert('Nueva nota creada.');
         navigate("/");
     };
+
 
     const handleDelete = (id) => {
         const updatedData = { ...localStorageData };
         delete updatedData[id]; // Eliminar la nota con el ID proporcionado
         setLocalStorageData(updatedData);
-        alert('Información borrada.');
         navigate("/");
     };
 
-    const iconos = ["👨🏻‍💻", "💬", "🏋️‍♂️", "☕", "📚", "⏰"];
+    const iconos = ["👨🏻‍💻", "💬", "🏋️‍♂️", "☕", "📚", "⏰", "🐈‍⬛", "🐕", "🧠", "🫀"];
     const [selectedIcon, setSelectedIcon] = useState('');
 
     const handleIconSelect = (icon) => {
@@ -90,6 +91,10 @@ function Detalles() {
                             Task Name
                             <div className="flex py-6">
                                 <input
+                                    type="text"
+                                    id="name"
+                                    name="taskname"
+                                    autoComplete="off"
                                     className=" py-4 px-60 w-full  border rounded-xl text-gray-600 focus:border-blue-900 focus:outline-none"
                                     placeholder="Enter a task"
                                     value={form.taskName}
@@ -107,6 +112,10 @@ function Detalles() {
                                 Description
                                 <div className="flex py-4">
                                     <input
+                                        type="text"
+                                        id="Description"
+                                        name="taskDescription"
+                                        autoComplete="off"
                                         className="py-10 px-60 w-full border border-blue-900 rounded-xl text-gray-600 focus:border-blue-900 focus:outline-none"
                                         placeholder="Enter a short description"
                                         value={form.description}
@@ -150,15 +159,19 @@ function Detalles() {
                         </select>
                     </section>
 
-                    <Link to={{
-                        pathname: "/",
-                        state: form
-                    }}>
-                        <div className="flex flex-row py-10 gap-4">
-                            <button onClick={handleDelete} className="w-28 h-10 rounded-xl bg-gray-300 text-white">Delete</button>
-                            <button onClick={handleSaveData} className="w-28 h-10 rounded-xl bg-blue-500 text-white">Save</button>
-                        </div>
-                    </Link>
+
+                    <div className="flex flex-row py-10">
+                        <NotificationComponent
+                            tittle="Eliminar"
+                            description="Información eliminada con éxito"
+                            notification="Listo"
+                        />
+                        <NotificationComponent
+                            tittle="Guardar"
+                            description="Información guardada con éxito"
+                            notification="Listo"
+                        />
+                    </div>
 
                 </section>
             </article>
