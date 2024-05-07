@@ -16,13 +16,22 @@ export const LocalStorageProvider = ({ children }) => {
     });
   };
 
+  const deleteNoteFromLocalStorage = (noteId) => {
+    setLocalStorageData((prevData) => {
+      const updatedData = { ...prevData };
+      delete updatedData[noteId];
+      localStorage.setItem('formData', JSON.stringify(updatedData));
+      return updatedData;
+    });
+  };
+
   const deleteAllLocalStorageData = () => {
     localStorage.clear();
     setLocalStorageData({}); // Eliminar todas las notas y forzar un renderizado
   };
 
   return (
-    <LocalStorageContext.Provider value={{ localStorageData, updateLocalStorageData, deleteAllLocalStorageData }}>
+    <LocalStorageContext.Provider value={{ localStorageData, updateLocalStorageData, deleteNoteFromLocalStorage, deleteAllLocalStorageData }}>
       {children}
     </LocalStorageContext.Provider>
   );

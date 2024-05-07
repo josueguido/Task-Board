@@ -30,9 +30,9 @@ export const ModalComponent = () => {
           </Modal.Icon>
           <Modal.Content>
             <div className="!mb-6">
-              <h3 className="mb-2 text-body-1 font-medium text-metal-900">Eliminar Notas!</h3>
+              <h3 className="mb-2 text-body-1 font-medium text-metal-900">Delete Task!</h3>
               <p className="text-body-4 font-normal text-metal-600">
-                Desea eliminar todas las notas?
+              Do you want to delete all task?
               </p>
             </div>
           </Modal.Content>
