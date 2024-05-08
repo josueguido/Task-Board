@@ -66,7 +66,7 @@ function Detalles() {
     const handleDelete = (id) => {
         const updatedData = { ...localStorageData };
         delete updatedData[id];
-        updateLocalStorageData(updatedData); // Utiliza la función de actualización del almacenamiento local
+        updateLocalStorageData(updatedData); 
         navigate("/");
     };
 
@@ -167,7 +167,7 @@ function Detalles() {
                             <option value="" disabled hidden>Select Status</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Completed">Completed</option>
-                            <option value="Wont Do">Won’t Do</option>
+                            <option value="Won’t Do">Won’t Do</option>
                             <option value="Canceled">Canceled</option>
 
                         </select>

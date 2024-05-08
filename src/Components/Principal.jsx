@@ -20,10 +20,12 @@ const Principal = () => {
         setFiltroEstado(e.target.value);
     };
 
+   
+
     return (
         <>
-            <section className="flex flex-col py-10 px-10 mx-10 rounded-md border border-black">
-                <header className="flex flex-row py-10 justify-between">
+            <section className="flex flex-col py-10 px-10 mx-10 rounded-md border border-black dark:border-white text-black dark:text-white bg-white dark:bg-black">
+                <header className="flex flex-row py-10 justify-between  dark:text-white dark:bg-black">
                     <div>
                         <div className="flex flex-col font-light gap-2">
                             <h1>Welcome back!</h1>
@@ -34,7 +36,7 @@ const Principal = () => {
                                 type="text"
                                 id="Description"
                                 name="taskDescription"
-                                className="w-72 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none"
+                                className="w-72 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none dark:text-white dark:bg-black"
                                 placeholder="Filter by status..."
                                 value={filtroEstado}
                                 onChange={handleChangeFiltroEstado}
@@ -49,7 +51,7 @@ const Principal = () => {
                     </div>
                 </header>
 
-                <div className="bg-gray-200 py-4 rounded border border-black">
+                <div className="bg-gray-200 py-4 rounded border border-black dark:border-white text-black dark:text-white dark:bg-black">
                     <div className="flex flex-row space-x-4 justify-around items-center py-4 text-sm font-light font-sans">
                         <p className="font-bold">Icon</p>
                         <p className="font-bold">Title:</p>
@@ -60,8 +62,8 @@ const Principal = () => {
                 </div>
 
                 {taskFilter.map((task) => (
-                    <div key={task.id} className="bg-gray-200 py-4 rounded border border-black h-20">
-                        <div className="flex flex-row space-x-4 justify-around items-center px-6 py-2 border-b text-sm font-light font-sans">
+                    <div key={task.id} className="bg-gray-200 dark:bg-black py-4 rounded border border-black dark:border-white h-20">
+                        <div className="flex flex-row space-x-4 justify-around items-center px-6 py-2 border-b text-sm font-light font-sans  dark:text-white dark:bg-black ">
                             <div>
                                 <p>{task.icon}</p>
                             </div>
@@ -82,8 +84,8 @@ const Principal = () => {
                 ))}
 
                 {task.filter((task) => !taskFilter.includes(task)).map((task) => (
-                    <div key={task.id} className="bg-gray-200 py-4 rounded border border-black h-20">
-                        <div className="flex flex-row space-x-4 justify-around items-center px-6 py-2 border-b text-sm font-light font-sans">
+                    <div key={task.id} className="bg-gray-200 dark:bg-black py-4 rounded border border-black dark:border-white h-20">
+                        <div className="flex flex-row space-x-4 justify-around items-center px-6 py-2  text-sm font-light font-sans dark:text-white dark:bg-black">
                             <div>
                                 <p>{task.icon}</p>
                             </div>
@@ -101,12 +103,12 @@ const Principal = () => {
                             </div>
                         </div>
                     </div>
-                ))}
 
+
+                ))}
                 <div className="flex flex-row justify-end py-10 gap-4">
                     <ModalComponent />
                 </div>
-
             </section>
         </>
     );
