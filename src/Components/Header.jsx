@@ -1,6 +1,9 @@
+"use client";
+import { Toggle } from "keep-react";
 import Logo from "../assets/Iconos/Logo.svg"
 import Lápiz from "../assets/Iconos/Edit_duotone.svg"
 import { useState, useEffect } from "react";
+import SwitchComponent from "./ui/SwitchComponent";
 
 function Header() {
 
@@ -17,17 +20,19 @@ function Header() {
     };
 
 
+
     return (
         <>
-            <header className="flex  flex-col justify-center items-center py-8 my-6 dark:bg-black dark:text-white">
-                <div className="flex flex-row gap-6" >
+            <header className="flex  flex-col justify-center items-center py-10 dark:bg-black dark:text-white">
+                <div className="flex flex-row gap-8" >
                     <img src={Logo} alt="Logo" />
                     <h1 className=" text-5xl font-medium">My Task Board</h1>
                     <img src={Lápiz} alt="Lápiz" />
                 </div>
                 <p className=" text-left text-2xl font-light py-4 dark:text-white">Tasks to keep organized</p>
                 <div>
-                    <button onClick={handleChangeTheme}>Change  Mode</button>
+                    <Toggle bgColor="primary" label="Toggle" size="md" withIcon={true} onClick={handleChangeTheme} />
+                    
                 </div>
             </header>
         </>
@@ -35,3 +40,7 @@ function Header() {
 }
 
 export default Header;
+
+
+
+

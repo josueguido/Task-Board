@@ -15,15 +15,7 @@ export const LocalStorageProvider = ({ children }) => {
             return updatedData;
         });
     };
-
-    //   const deleteNoteFromLocalStorage = (noteId) => {
-    //     setLocalStorageData((prevData) => {
-    //       const updatedData = { ...prevData };
-    //       delete updatedData[noteId];
-    //       localStorage.setItem('formData', JSON.stringify(updatedData));
-    //       return updatedData;
-    //     });
-    //   };
+    
 
     const deleteAllLocalStorageData = () => {
         localStorage.clear();

@@ -24,7 +24,7 @@ const Principal = () => {
 
     return (
         <>
-            <section className="flex flex-col py-10 px-10 mx-10 rounded-md border border-black dark:border-white text-black dark:text-white bg-white dark:bg-black">
+            <section className="flex flex-col py-14 px-10 mx-10 rounded-md border border-black dark:border-white text-black dark:text-white bg-white dark:bg-black">
                 <header className="flex flex-row py-10 justify-between  dark:text-white dark:bg-black">
                     <div>
                         <div className="flex flex-col font-light gap-2">
@@ -63,7 +63,7 @@ const Principal = () => {
 
                 {taskFilter.map((task) => (
                     <div key={task.id} className="bg-gray-200 dark:bg-black py-4 rounded border border-black dark:border-white h-20">
-                        <div className="flex flex-row space-x-4 justify-around items-center px-6 py-2 border-b text-sm font-light font-sans  dark:text-white dark:bg-black ">
+                        <div className="flex flex-row space-x-4 justify-around items-center px-6 py-2  text-sm font-light font-sans  dark:text-white dark:bg-black ">
                             <div>
                                 <p>{task.icon}</p>
                             </div>
