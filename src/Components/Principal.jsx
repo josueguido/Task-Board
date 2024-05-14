@@ -2,7 +2,7 @@ import { Input } from "keep-react";
 import { useLocalStorage } from "./Contexto";
 import { ModalComponent } from "./ui/Modal";
 import { Link } from "react-router-dom";
-import { filterNotesByStatus } from "../Services/taskFilter";
+import { filterNotesByPriority } from "../Services/taskFilter";
 import { useState, useMemo } from "react";
 
 const Principal = ({ selectedDate }) => {
@@ -10,17 +10,15 @@ const Principal = ({ selectedDate }) => {
     const { localStorageData } = useLocalStorage();
     const task = Object.values(localStorageData);
 
-    const [filtroEstado, setFiltroEstado] = useState("");
+    const [filterPriority, setFilterPriority] = useState("");
 
     const taskFilter = useMemo(() => {
-        return filterNotesByStatus(task, filtroEstado);
-    }, [task, filtroEstado]);
+        return filterNotesByPriority(task, filterPriority);
+    }, [task, filterPriority]);
 
-    const handleChangeFiltroEstado = (e) => {
-        setFiltroEstado(e.target.value);
+    const handleChangeFilterPriority = (e) => {
+        setFilterPriority(e.target.value);
     };
-
-
 
     return (
         <>
@@ -38,8 +36,8 @@ const Principal = ({ selectedDate }) => {
                                 name="taskDescription"
                                 className="w-full md:w-72 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none dark:text-white dark:bg-black"
                                 placeholder="Filter by status..."
-                                value={filtroEstado}
-                                onChange={handleChangeFiltroEstado}
+                                value={filterPriority}
+                                onChange={handleChangeFilterPriority}
                             />
                         </div>
                     </div>

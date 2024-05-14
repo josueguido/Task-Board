@@ -27,7 +27,7 @@ function Header() {
                 <div className="flex flex-row gap-8" >
                     <img src={Logo} alt="Logo" />
                     <h1 className=" text-5xl font-medium">My Task Board</h1>
-                    <img src={Lápiz} alt="Lápiz" />
+                    <img src={Lápiz} alt="Lápiz" className="hidden md:block" />
                 </div>
                 <p className=" text-left text-2xl font-light py-4 dark:text-white">Tasks to keep organized</p>
                 <div>
