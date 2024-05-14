@@ -50,7 +50,7 @@ const Principal = ({ selectedDate }) => {
                 </header>
 
                 <div className="bg-gray-200 py-2 rounded border border-black dark:border-white text-black dark:text-white dark:bg-black">
-                    <div className="flex flex-row space-x-4 justify-around items-center py-2 text-sm font-light font-sans">
+                    <div className="flex flex-row space-x-4 justify-around items-center text-start py-2 text-sm font-light font-sans">
                         <p className="font-bold">Icon</p>
                         <p className="font-bold">Title:</p>
                         <p className="font-bold">Description:</p>
@@ -83,7 +83,7 @@ const Principal = ({ selectedDate }) => {
 
                 {task.filter((task) => !taskFilter.includes(task)).map((task) => (
                     <div key={task.id} className="bg-gray-200 dark:bg-black py-4 rounded border border-black dark:border-white h-20">
-                        <div className="flex flex-row space-x-4 justify-around items-center px-6 py-2  text-sm font-light font-sans dark:text-white dark:bg-black">
+                        <div className="flex flex-row space-x-4 justify-around items-center  py-2  text-sm font-light font-sans dark:text-white dark:bg-black">
                             <div>
                                 <p>{task.icon}</p>
                             </div>
