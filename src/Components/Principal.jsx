@@ -35,7 +35,7 @@ const Principal = ({ selectedDate }) => {
                                 id="Description"
                                 name="taskDescription"
                                 className="w-full md:w-72 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none dark:text-white dark:bg-black"
-                                placeholder="Filter by status..."
+                                placeholder="Filter by priority..."
                                 value={filterPriority}
                                 onChange={handleChangeFilterPriority}
                             />
