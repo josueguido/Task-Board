@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Input } from 'keep-react'
 import { useLocalStorage } from "./Contexto";
 import { useLocationService } from "../Services/locationService";
+import { DatePickerComponent } from './DatePicker';
 
 function Detalles() {
 
@@ -15,6 +16,7 @@ function Detalles() {
     const { localStorageData, updateLocalStorageData } = useLocalStorage();
 
     const [errors, setErrors] = useState({});
+    // const [selectedDate, setSelectedDate] = useState(null);
 
     const [form, setForm] = useState({
         taskName: '',
@@ -91,6 +93,11 @@ function Detalles() {
             }));
         }
     }, []);
+
+    // const handleDateChange = (date) => {
+    //     setSelectedDate(date); // Actualizar la fecha seleccionada
+    // };
+    
 
     return (
         <>
@@ -195,6 +202,12 @@ function Detalles() {
                             <option value="Low">Low</option>
                         </select>
                     </section>
+
+                    {/* <section>
+                        <h3 className="text-xs font-bold text-gray-600 pt-10 dark:text-white">Due Date</h3>
+                        <DatePickerComponent  onDateChange={handleDateChange}/>
+                    </section> */}
+
 
                     <Link to="/">
                         <div className="flex flex-row py-10 gap-6">
